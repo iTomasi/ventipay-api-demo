@@ -10,7 +10,7 @@ export default function Layout ({
       <body>
         <Header />
 
-        <main className='max-w-screen-xl px-6 mx-auto'>
+        <main className='max-w-screen-xl px-6 mx-auto py-8'>
           {children}
         </main>
       </body>

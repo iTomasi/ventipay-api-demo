@@ -1,4 +1,4 @@
-import { Navbar, NavbarBrand, NavbarContent } from '@nextui-org/react'
+import { Navbar, NavbarBrand } from '@nextui-org/react'
 import Right from './Right'
 
 export default function Header (): JSX.Element {
