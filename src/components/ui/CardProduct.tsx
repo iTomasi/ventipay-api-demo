@@ -1,18 +1,22 @@
 'use client'
+import type { IProduct } from '@/server/db'
 import { Card, Button } from '@nextui-org/react'
 import Image from 'next/image'
 
-interface CardProductProps {
-  imageUrl: string
-  name: string
-  price: number
+interface CardProductProps extends IProduct {
+  onClickAdd: (value: IProduct) => void
 }
 
 export default function CardProduct ({
-  imageUrl,
-  name,
-  price
+  onClickAdd,
+  ...restProps
 }: CardProductProps): JSX.Element {
+  const { imageUrl, name, price } = restProps
+
+  const handleOnPressAdd = (): void => {
+    onClickAdd(restProps)
+  }
+
   return (
     <Card className='aspect-square relative group'>
       <Image
@@ -27,7 +31,7 @@ export default function CardProduct ({
         <span className='bg-blue-400 rounded-full py-1 px-2'>${price.toLocaleString('en-US')}</span>
       </div>
 
-      <Button className='absolute right-4 bottom-4' color='primary'>Agregar</Button>
+      <Button className='absolute right-4 bottom-4' color='primary' onPress={handleOnPressAdd}>Agregar</Button>
     </Card>
   )
 }
