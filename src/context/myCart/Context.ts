@@ -13,12 +13,16 @@ export interface IContext {
 
 interface IHandlers {
   addProduct: (value: IProduct) => void
+  removeProduct: (id: number) => void
+  quantityProduct: (type: 'plus' | 'minus', id: number) => void
 }
 
 const Context = createContext<IContext>({
   myCartList: [],
   handlers: {
-    addProduct: () => {}
+    addProduct: () => {},
+    removeProduct: () => {},
+    quantityProduct: () => {}
   }
 })
 

@@ -16,11 +16,30 @@ export default function Provider ({
     })
   }
 
+  const removeProduct = (id: number): void => {
+    dispatch({
+      type: 'REMOVE',
+      payload: id
+    })
+  }
+
+  const quantityProduct = (type: 'plus' | 'minus', id: number): void => {
+    dispatch({
+      type: 'QUANTITY',
+      payload: {
+        id,
+        type
+      }
+    })
+  }
+
   return (
     <Context.Provider value={{
       myCartList: state,
       handlers: {
-        addProduct
+        addProduct,
+        removeProduct,
+        quantityProduct
       }
     }}
     >
