@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Header from '@/components/Header'
+import { MyCartProvider } from '@/context'
 import 'tailwindcss/tailwind.css'
 
 export default function Layout ({
@@ -11,7 +12,9 @@ export default function Layout ({
         <Header />
 
         <main className='max-w-screen-xl px-6 mx-auto py-8'>
-          {children}
+          <MyCartProvider>
+            {children}
+          </MyCartProvider>
         </main>
       </body>
     </html>

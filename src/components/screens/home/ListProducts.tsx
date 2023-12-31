@@ -1,6 +1,7 @@
 'use client'
 import type { IProduct } from '@/server/db'
 import CardProduct from '@/components/ui/CardProduct'
+import { useMyCart } from '@/hooks'
 
 interface ListProductsProps {
   data: IProduct[]
@@ -9,8 +10,12 @@ interface ListProductsProps {
 export default function ListProducts ({
   data
 }: ListProductsProps): JSX.Element {
+  const { myCartList, handlers: { addProduct } } = useMyCart()
+
+  console.log(myCartList)
+
   const handleOnClickAdd = (payload: IProduct): void => {
-    console.log(payload)
+    addProduct(payload)
   }
 
   return (
