@@ -6,6 +6,7 @@ import { useMyCart } from '@/hooks'
 import EmptyState from './EmptyState'
 import Slider from '@/components/ui/Slider'
 import List from './List'
+import Footer from './Footer'
 
 export default function Cart (): JSX.Element {
   const [show, setShow] = useState<boolean>(false)
@@ -15,6 +16,10 @@ export default function Cart (): JSX.Element {
 
   const handleOnPress = (): void => {
     setShow(true)
+  }
+
+  const handleOnClickCheckout = (): void => {
+    setShow(false)
   }
 
   return (
@@ -36,6 +41,9 @@ export default function Cart (): JSX.Element {
         title='Mi carrito'
         show={show}
         setShow={setShow}
+        footer={
+          hasItem ? <Footer onClickCheckout={handleOnClickCheckout} /> : undefined
+        }
       >
         {
           hasItem

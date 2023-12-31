@@ -7,6 +7,7 @@ export interface IProductCart extends IProduct {
 }
 
 export interface IContext {
+  loading: boolean
   myCartList: IProductCart[]
   handlers: IHandlers
 }
@@ -18,6 +19,7 @@ interface IHandlers {
 }
 
 const Context = createContext<IContext>({
+  loading: true,
   myCartList: [],
   handlers: {
     addProduct: () => {},
