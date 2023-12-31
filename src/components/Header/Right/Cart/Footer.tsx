@@ -25,7 +25,7 @@ export default function Footer ({
 
   return (
     <div>
-      <h3 className='mb-2'>Sub total: ${subTotal}</h3>
+      <h5 className='mb-2'>Sub total: <span>${subTotal}</span></h5>
 
       <Button href='/checkout' className='w-full' color='primary' as={NextLink} onClick={onClickCheckout}>Ir a pagar</Button>
     </div>

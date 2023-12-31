@@ -1,5 +1,6 @@
 import { getCurrentCart } from '@/server/getCurrentCart'
 import { redirect } from 'next/navigation'
+import { Items } from '@/components/screens/checkout'
 
 export default function Page (): JSX.Element {
   const myCart = getCurrentCart()
@@ -9,8 +10,13 @@ export default function Page (): JSX.Element {
   }
 
   return (
-    <div>
-      checkout
+    <div className='flex'>
+      <div className='w-[60%] pr-8 border-r border-divider'>
+        Checkout
+      </div>
+      <div className='w-[40%] pl-8'>
+        <Items />
+      </div>
     </div>
   )
 }
