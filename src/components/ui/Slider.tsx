@@ -15,12 +15,23 @@ export default function Slider ({
   footer,
   children
 }: SliderProps): JSX.Element {
+  const handleOnMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
+    if (!show) return
+
+    const { currentTarget, target } = e
+
+    if (currentTarget !== target) return
+
+    setShow(false)
+  }
+
   const handleOnPressClose = (): void => {
     setShow(false)
   }
   return (
     <div
       className={`fixed inset-0 bg-white bg-opacity-50 dark:bg-black dark:bg-opacity-50 flex justify-end z-50 h-dvh w-dvh transition-all ${show ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+      onMouseDown={handleOnMouseDown}
     >
       <div className={`w-96 bg-content1 flex flex-col justify-between transition-all ${show ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className='overflow-y-auto'>
