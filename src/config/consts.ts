@@ -1,1 +1,1 @@
-export const LS_MY_CART = 'venti_cart'
+export const COOKIE_MY_CART = 'venti_cart'
