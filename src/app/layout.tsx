@@ -9,13 +9,13 @@ export default function Layout ({
   return (
     <html lang='es'>
       <body>
-        <Header />
+        <MyCartProvider>
+          <Header />
 
-        <main className='max-w-screen-xl px-6 mx-auto py-8'>
-          <MyCartProvider>
+          <main className='max-w-screen-xl px-6 mx-auto py-8'>
             {children}
-          </MyCartProvider>
-        </main>
+          </main>
+        </MyCartProvider>
       </body>
     </html>
   )

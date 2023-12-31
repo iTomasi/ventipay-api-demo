@@ -10,9 +10,7 @@ interface ListProductsProps {
 export default function ListProducts ({
   data
 }: ListProductsProps): JSX.Element {
-  const { myCartList, handlers: { addProduct } } = useMyCart()
-
-  console.log(myCartList)
+  const { handlers: { addProduct } } = useMyCart()
 
   const handleOnClickAdd = (payload: IProduct): void => {
     addProduct(payload)
