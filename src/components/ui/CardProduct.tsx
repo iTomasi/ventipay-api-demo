@@ -26,9 +26,10 @@ export default function CardProduct ({
         fill
       />
 
-      <div className='absolute bottom-4 left-4 bg-white border border-gray-300 text-sm rounded-full pl-2 pr-1 py-1 flex items-center gap-2'>
+      <div className='absolute bottom-4 left-4 bg-content1 border border-default-400 text-sm rounded-lg p-2.5 font-medium flex items-center gap-1'>
         <h3>{name}</h3>
-        <span className='bg-blue-400 rounded-full py-1 px-2'>${price.toLocaleString('en-US')}</span>
+        <span>-</span>
+        <span>${price.toLocaleString('en-US')}</span>
       </div>
 
       <Button className='absolute right-4 bottom-4' color='primary' onPress={handleOnPressAdd}>Agregar</Button>
