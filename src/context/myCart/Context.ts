@@ -15,6 +15,7 @@ interface IHandlers {
   addProduct: (value: IProduct) => void
   removeProduct: (id: number) => void
   quantityProduct: (type: 'plus' | 'minus', id: number) => void
+  reset: () => void
 }
 
 const Context = createContext<IContext>({
@@ -22,7 +23,8 @@ const Context = createContext<IContext>({
   handlers: {
     addProduct: () => {},
     removeProduct: () => {},
-    quantityProduct: () => {}
+    quantityProduct: () => {},
+    reset: () => {}
   }
 })
 

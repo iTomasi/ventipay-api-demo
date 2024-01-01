@@ -57,13 +57,20 @@ export default function Provider ({
     })
   }
 
+  const reset = (): void => {
+    dispatch({
+      type: 'RESET'
+    })
+  }
+
   return (
     <Context.Provider value={{
       myCartList: state,
       handlers: {
         addProduct,
         removeProduct,
-        quantityProduct
+        quantityProduct,
+        reset
       }
     }}
     >

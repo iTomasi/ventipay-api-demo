@@ -1,8 +1,8 @@
 import type { IProductCart } from './Context'
 
 interface IAction {
-  type: 'ADD' | 'REMOVE' | 'QUANTITY'
-  payload: any
+  type: 'ADD' | 'REMOVE' | 'QUANTITY' | 'RESET'
+  payload?: any
 }
 
 const reducer = (state: IProductCart[], action: IAction): IProductCart[] => {
@@ -44,6 +44,9 @@ const reducer = (state: IProductCart[], action: IAction): IProductCart[] => {
 
       return clone
     }
+
+    case 'RESET':
+      return []
     default:
       return state
   }
