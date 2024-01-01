@@ -29,10 +29,9 @@ export const POST = async (req: Request): Promise<Response> => {
     currency: 'clp',
     items: mapCart,
     cancel_url: `${CLIENT_URL}/checkout`,
+    cancel_url_method: 'get',
     success_url: `${CLIENT_URL}/checkout/success`,
-    metadata: {
-      test: 'test'
-    }
+    success_url_method: 'get'
   }
 
   try {
