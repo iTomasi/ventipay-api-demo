@@ -18,15 +18,15 @@ export const POST = async (req: Request): Promise<Response> => {
   const { data } = json
 
   const id = data.id
-  const email = data.customer.email
   const items = data.items
+  const metadata = data.metadata
 
   try {
     await transport.sendMail({
-      to: email,
+      to: metadata.email,
       from: 'Demo <pagos@demo.cl>',
       subject: 'Venti Demo - Compra',
-      html: render(EmailPurchase({ transactionId: id, items }))
+      html: render(EmailPurchase({ transactionId: id, fullName: metadata.fullName, items }))
     })
 
     return NextResponse.json({ success: true })

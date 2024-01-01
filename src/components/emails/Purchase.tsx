@@ -9,11 +9,13 @@ interface IItem {
 
 interface PurchaseProps {
   transactionId: string
+  fullName: string
   items: IItem[]
 }
 
 export default function Purchase ({
   transactionId,
+  fullName,
   items
 }: PurchaseProps): JSX.Element {
   return (
@@ -30,7 +32,7 @@ export default function Purchase ({
             </Section>
 
             <Section>
-              <Text className='text-base'>Le dejamos los detalles de los productos que adquirio:</Text>
+              <Text className='text-base'>Hola {fullName}, aqui le dejamos los detalles de los productos que adquirio:</Text>
               <ul>
                 {
                   items.map((item, key) => (
