@@ -10,11 +10,11 @@ export default function Page (): JSX.Element {
   }
 
   return (
-    <div className='flex'>
-      <div className='w-[60%] pr-8 border-r border-divider'>
+    <div className='flex flex-col-reverse gap-8 md:gap-0 md:flex-row'>
+      <div className='md:w-[60%] md:pr-8 md:border-r md:border-divider'>
         <Form />
       </div>
-      <div className='w-[40%] pl-8'>
+      <div className='md:w-[40%] md:pl-8'>
         <Items />
       </div>
     </div>
