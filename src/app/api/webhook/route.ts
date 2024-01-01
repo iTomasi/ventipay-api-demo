@@ -1,8 +1,9 @@
-// import { VENTIPAY_WEBHOOK_SIGNATURE } from '@/server/envs'
+import { VENTIPAY_WEBHOOK_SIGNATURE } from '@/server/envs'
 import { NextResponse } from 'next/server'
 import { transport } from '@/server/nodemailer'
 import { EmailPurchase } from '@/components/emails'
 import { render } from '@react-email/render'
+import { isValidWebhookSignature } from '@/server/isValidWebhookSignature'
 
 export const POST = async (req: Request): Promise<Response> => {
   const ventiSignature = req.headers.get('venti-signature')
@@ -12,9 +13,13 @@ export const POST = async (req: Request): Promise<Response> => {
   }
 
   // TODO: signature verification
-  console.log(ventiSignature)
+  const getV1 = ventiSignature.split(',')[1].split('=')[1]
 
   const json = await req.json()
+
+  const a = isValidWebhookSignature(VENTIPAY_WEBHOOK_SIGNATURE, JSON.stringify(json), getV1)
+
+  console.log({ a })
 
   if (json.type !== 'checkout.paid') return NextResponse.json({ success: true })
 
