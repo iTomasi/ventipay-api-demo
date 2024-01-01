@@ -1,8 +1,8 @@
 import { VENTIPAY_WEBHOOK_SIGNATURE } from '@/server/envs'
 import { NextResponse } from 'next/server'
-import { transport } from '@/server/nodemailer'
-import { EmailPurchase } from '@/components/emails'
-import { render } from '@react-email/render'
+// import { transport } from '@/server/nodemailer'
+// import { EmailPurchase } from '@/components/emails'
+// import { render } from '@react-email/render'
 import { isValidWebhookSignature } from '@/server/isValidWebhookSignature'
 
 export const POST = async (req: Request): Promise<Response> => {
@@ -13,11 +13,10 @@ export const POST = async (req: Request): Promise<Response> => {
   }
 
   // TODO: signature verification
-  const getV1 = ventiSignature.split(',')[1].split('=')[1]
 
   const json = await req.json()
 
-  const a = isValidWebhookSignature(VENTIPAY_WEBHOOK_SIGNATURE, JSON.stringify(json), getV1)
+  const a = isValidWebhookSignature(VENTIPAY_WEBHOOK_SIGNATURE, JSON.stringify(json), ventiSignature)
 
   console.log({ a })
 
@@ -25,19 +24,19 @@ export const POST = async (req: Request): Promise<Response> => {
 
   console.log(json)
 
-  const { data } = json
+  // const { data } = json
 
-  const id = data.id
-  const items = data.items
-  const metadata = data.metadata
+  // const id = data.id
+  // const items = data.items
+  // const metadata = data.metadata
 
   try {
-    await transport.sendMail({
+    /* await transport.sendMail({
       to: metadata.email,
       from: 'Demo <pagos@demo.cl>',
       subject: 'Venti Demo - Compra',
       html: render(EmailPurchase({ transactionId: id, fullName: metadata.fullName, items }))
-    })
+    }) */
 
     return NextResponse.json({ success: true })
   } catch (e) {
