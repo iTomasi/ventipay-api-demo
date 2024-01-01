@@ -24,7 +24,7 @@ export default function Purchase ({
         <Body>
           <Container className='border border-solid border-gray-300 rounded-md p-10'>
             <Section className='text-center'>
-              <Img className='mx-auto' src={`${CLIENT_URL}/lu-check-circle-2.svg`} alt='Check circle' width={70} height={70} />
+              <Img className='mx-auto' src={`${CLIENT_URL}/check-circle.png`} alt='Check circle' width={70} height={70} />
               <Heading>Gracias por tu compra!</Heading>
               <Text className='text-lg'>Id de la transacción: <strong>{transactionId}</strong></Text>
             </Section>
