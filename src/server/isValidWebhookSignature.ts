@@ -13,8 +13,6 @@ export const isValidWebhookSignature = (secret: string, payload: string, signatu
 
   if (typeof t !== 'string' || typeof v1 !== 'string') return false
 
-  console.log({ t, v1 })
-
   const hash = createHmac('sha256', secret).update(`${t}.${payload}`).digest('hex')
 
   return hash === v1
