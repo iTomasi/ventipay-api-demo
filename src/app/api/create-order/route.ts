@@ -49,8 +49,6 @@ export const POST = async (req: Request): Promise<Response> => {
 
     const data = await fetching.json()
 
-    console.log(data)
-
     return NextResponse.json({ url: data.url })
   } catch (e) {
     console.log(e)
