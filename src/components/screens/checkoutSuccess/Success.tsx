@@ -16,7 +16,6 @@ export default function Success (): JSX.Element {
     <div className='flex flex-col items-center text-center gap-4'>
       <LuCheckCircle2 className='size-16 text-success' />
       <h1 className='text-2xl font-medium'>Compra realizada satisfactoriamente!</h1>
-      <h2>Id de la compra: asd9asdljasdlkj</h2>
       <p>Muchas gracias!, Recibiras un correo electrónico con la información de la compra.</p>
       <Button color='primary' size='lg' as={NextLink} href='/'>Volver al inicio</Button>
     </div>
