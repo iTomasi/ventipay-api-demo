@@ -4,6 +4,7 @@ import Section from '@/components/ui/Section'
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { zodCheckout } from '@/libs/zod'
+import { FetchCreateOrder } from '@/services/api'
 
 export default function Form (): JSX.Element {
   const { register, handleSubmit, formState: { errors, isValid, isSubmitted, isSubmitting } } = useForm({
@@ -11,8 +12,14 @@ export default function Form (): JSX.Element {
     mode: 'onTouched'
   })
 
-  const handleOnSubmit: SubmitHandler<any> = (values) => {
-    console.log(values)
+  const handleOnSubmit: SubmitHandler<any> = async (values) => {
+    try {
+      const url = await FetchCreateOrder(values)
+
+      location.replace(url)
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   return (
@@ -29,6 +36,7 @@ export default function Form (): JSX.Element {
           placeholder='Ej. Tomás Duclos'
           isInvalid={Boolean(errors.fullName?.message)}
           errorMessage={errors.fullName?.message?.toString()}
+          isDisabled={isSubmitting}
         />
 
         <Input
@@ -38,6 +46,7 @@ export default function Form (): JSX.Element {
           placeholder='Ej. tu@email.com'
           isInvalid={Boolean(errors.email?.message)}
           errorMessage={errors.email?.message?.toString()}
+          isDisabled={isSubmitting}
         />
       </Section>
 
