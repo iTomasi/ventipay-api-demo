@@ -13,6 +13,8 @@ export const POST = async (req: Request): Promise<Response> => {
 
   if (json.type !== 'checkout.paid') return NextResponse.json({ success: true })
 
+  console.log(json)
+
   const { data } = json
 
   const id = data.id

@@ -23,7 +23,7 @@ export const POST = async (req: Request): Promise<Response> => {
     name: product.name
   }))
 
-  // const { fullName, email } = safeParse.data
+  const { fullName, email } = safeParse.data
 
   const body = {
     currency: 'clp',
@@ -31,7 +31,11 @@ export const POST = async (req: Request): Promise<Response> => {
     cancel_url: `${CLIENT_URL}/checkout`,
     cancel_url_method: 'get',
     success_url: `${CLIENT_URL}/checkout/success`,
-    success_url_method: 'get'
+    success_url_method: 'get',
+    metadata: {
+      fullName,
+      email
+    }
   }
 
   try {
