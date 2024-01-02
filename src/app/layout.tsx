@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Header from '@/components/Header'
 import { MyCartProvider } from '@/context'
 import { getCurrentCart } from '@/server/getCurrentCart'
@@ -22,6 +22,10 @@ export default function Layout ({
       </body>
     </html>
   )
+}
+
+export const viewport: Viewport = {
+  userScalable: false
 }
 
 export const metadata: Metadata = {
