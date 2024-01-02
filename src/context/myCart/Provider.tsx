@@ -29,7 +29,6 @@ export default function Provider ({
     broadcastChannelRef.current = bc
 
     bc.addEventListener('message', (e) => {
-      console.log('e?')
       dispatch(e.data)
     })
 
