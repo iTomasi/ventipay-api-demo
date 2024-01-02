@@ -1,6 +1,6 @@
 import type { IProductCart } from './Context'
 
-interface IAction {
+export interface IAction {
   type: 'ADD' | 'REMOVE' | 'QUANTITY' | 'RESET'
   payload?: any
 }

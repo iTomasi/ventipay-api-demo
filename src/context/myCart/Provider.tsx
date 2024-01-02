@@ -1,8 +1,8 @@
 'use client'
 import type { IProduct } from '@/server/db'
-import { useReducer, useEffect } from 'react'
+import { useReducer, useEffect, useRef } from 'react'
 import Context, { type IProductCart } from './Context'
-import reducer from './reducer'
+import reducer, { type IAction } from './reducer'
 import { usePathname, useRouter } from 'next/navigation'
 import { COOKIE_MY_CART } from '@/config/consts'
 import cookies from 'js-cookie'
@@ -17,7 +17,26 @@ export default function Provider ({
 }: ProviderProps): JSX.Element {
   const router = useRouter()
   const pathname = usePathname()
+  const effectRef = useRef<boolean>(false)
+  const broadcastChannelRef = useRef<BroadcastChannel | null>(null)
   const [state, dispatch] = useReducer(reducer, initialCart)
+
+  useEffect(() => {
+    if (effectRef.current) return
+
+    const bc = new BroadcastChannel('myCart')
+
+    broadcastChannelRef.current = bc
+
+    bc.addEventListener('message', (e) => {
+      console.log('e?')
+      dispatch(e.data)
+    })
+
+    return () => {
+      effectRef.current = true
+    }
+  }, [])
 
   useEffect(() => {
     if (state.length === 0) {
@@ -34,33 +53,45 @@ export default function Provider ({
   }, [state])
 
   const addProduct = (payload: IProduct): void => {
-    dispatch({
+    const action: IAction = {
       type: 'ADD',
       payload
-    })
+    }
+
+    dispatch(action)
+    broadcastChannelRef.current?.postMessage(action)
   }
 
   const removeProduct = (id: number): void => {
-    dispatch({
+    const payload: IAction = {
       type: 'REMOVE',
       payload: id
-    })
+    }
+
+    dispatch(payload)
+    broadcastChannelRef.current?.postMessage(payload)
   }
 
   const quantityProduct = (type: 'plus' | 'minus', id: number): void => {
-    dispatch({
+    const action: IAction = {
       type: 'QUANTITY',
       payload: {
         id,
         type
       }
-    })
+    }
+
+    dispatch(action)
+    broadcastChannelRef.current?.postMessage(action)
   }
 
   const reset = (): void => {
-    dispatch({
+    const action: IAction = {
       type: 'RESET'
-    })
+    }
+
+    dispatch(action)
+    broadcastChannelRef.current?.postMessage(action)
   }
 
   return (
